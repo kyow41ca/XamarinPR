@@ -21,9 +21,15 @@
     <None Remove="Prism.Unity.Forms" />
     <None Remove="Views\" />
     <None Remove="ViewModels\" />
+    <None Remove="Base\" />
+    <None Remove="Behaviors\" />
+    <None Remove="Consts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Base\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="Consts\" />
   </ItemGroup>
 </Project>

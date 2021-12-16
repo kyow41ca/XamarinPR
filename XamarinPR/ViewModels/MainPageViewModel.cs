@@ -1,31 +1,49 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using XamarinPR.Consts;
 
 namespace XamarinPR.ViewModels
 {
     public class MainPageViewModel : BindableBase
     {
-        private string _message;
-        public string Message
+        private List<CustomControl.Param> _uiList;
+        public List<CustomControl.Param> UIList
         {
-            get { return _message; }
-            set { this.SetProperty(ref _message, value); }
+            get { return _uiList; }
+            set { this.SetProperty(ref _uiList, value); }
         }
 
-        public DelegateCommand UpdateMessageCommand { get; }
+        public Command<CustomControl.Param> ListItemSelectedCommand { get; }
 
         public MainPageViewModel()
         {
-            this.UpdateMessageCommand = new DelegateCommand(async () => await UpdateMessage());
+            _uiList = new List<CustomControl.Param>()
+            {
+                CustomControl.Param.Checkbox,
+                CustomControl.Param.LineChart,
+            };
+
+            ListItemSelectedCommand = new Command<CustomControl.Param>(async item => await OnTapped(item));
         }
 
-        private async Task UpdateMessage()
+        private async Task OnTapped(CustomControl.Param item)
         {
             await Task.Run(() =>
             {
-                this.Message = DateTime.Now.ToString();
+                System.Diagnostics.Debug.WriteLine(item);
+                switch (item)
+                {
+                    case CustomControl.Param.Checkbox:
+                        break;
+
+                    case CustomControl.Param.LineChart:
+                        break;
+                }
             });
         }
     }

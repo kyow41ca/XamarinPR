@@ -1,13 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="XamarinPR.Views.MainPage">
-      <StackLayout HorizontalOptions="Center"
-                   VerticalOptions="Center">
-        <Label Text="{Binding Message}" />
-        <Button Text="UpdateMessage"
-                Command="{Binding UpdateMessageCommand}" />
-      </StackLayout>
-</ContentPage>
+<base:PageBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    xmlns:base="clr-namespace:XamarinPR.Base;assembly=XamarinPR"
+    xmlns:behavior="clr-namespace:XamarinPR.Behaviors;assembly=XamarinPR"
+    x:Class="XamarinPR.Views.MainPage">
+
+    <StackLayout
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <ListView
+            ItemsSource="{Binding UIList}"
+            >
+
+            <ListView.Behaviors>
+                <behavior:ItemSelectedToCommandBehavior Command="{Binding ListItemSelectedCommand}"/>
+            </ListView.Behaviors>
+
+        </ListView>
+
+    </StackLayout>
+
+</base:PageBase>
